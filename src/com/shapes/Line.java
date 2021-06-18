@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 import com.math.Vec2;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
 
 public class Line extends Shape {
 
@@ -20,11 +22,18 @@ public class Line extends Shape {
 
     }
 
+    /**
+     *
+     * @param g
+     */
     @Override
-    public void render ( Graphics g ) {
-
+    public void render ( Graphics2D g ) {
+        if(selected){
+            g.setStroke (new BasicStroke (4));
+        }
         g.setColor ( this.color );
         g.drawLine ( ( int ) this.start.getX () , ( int ) this.start.getY () , ( int ) this.end.getX () , ( int ) this.end.getY () );
+        g.setStroke ( new BasicStroke(1));
     }
 
     @Override

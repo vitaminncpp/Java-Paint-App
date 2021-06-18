@@ -6,8 +6,15 @@
 package com.main;
 
 import com.IO.Input;
+import com.IO.LabelListener;
 import com.paint.Paint;
 import com.statemachine.State;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JColorChooser;
 
 /**
@@ -19,7 +26,7 @@ public class Navigation extends javax.swing.JFrame {
     private final Paint paint;
     private final Display display;
     private final Input input;
-    
+    private int totalItems=0;
 
     /**
      * Creates new form Navigation
@@ -35,6 +42,7 @@ public class Navigation extends javax.swing.JFrame {
         
         //this.colorSelecton=new ColorSelection("Select Color");
         
+        this.itemListPanel.setLayout ( new GridLayout(0,1));
         
         
     }
@@ -64,8 +72,6 @@ public class Navigation extends javax.swing.JFrame {
         lblBrushSize = new javax.swing.JLabel();
         btnClearSelect = new javax.swing.JButton();
         itemListPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -221,29 +227,15 @@ public class Navigation extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Edit", editorPanel);
 
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
-
         javax.swing.GroupLayout itemListPanelLayout = new javax.swing.GroupLayout(itemListPanel);
         itemListPanel.setLayout(itemListPanelLayout);
         itemListPanelLayout.setHorizontalGroup(
             itemListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(itemListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(itemListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addContainerGap(168, Short.MAX_VALUE))
+            .addGap(0, 211, Short.MAX_VALUE)
         );
         itemListPanelLayout.setVerticalGroup(
             itemListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(itemListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(452, Short.MAX_VALUE))
+            .addGap(0, 496, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Shapes", itemListPanel);
@@ -266,18 +258,46 @@ public class Navigation extends javax.swing.JFrame {
 
         this.paint.shapeState = State.LINE_SELECTED;
         this.lblShapeSelected.setText ( "Line Selected" );
-       
+        Label lbl=new Label( totalItems+" Line");
+        
+        lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
+        
+        lbl.setSize ( 150,25);
+        lbl.setVisible ( true);
+        this.itemListPanel.add (lbl );
+        this.paint.setSelected ( this.totalItems);
+        this.totalItems++;
+        this.itemListPanel.repaint ();
+        
     }//GEN-LAST:event_btnLineActionPerformed
 
     private void btnCircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCircleActionPerformed
         this.paint.shapeState = State.CIRCLE_SELECTED;
         this.lblShapeSelected.setText ( "Cirle Selected" );
+        Label lbl=new Label( totalItems+" Circle");
         
+        lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
+        
+        lbl.setSize ( 150,25);
+        lbl.setVisible ( true);
+        this.itemListPanel.add (lbl );
+        this.totalItems++;
+        this.itemListPanel.repaint ();
     }//GEN-LAST:event_btnCircleActionPerformed
 
     private void btnRectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectActionPerformed
         this.paint.shapeState = State.RECT_SELECTED;
         this.lblShapeSelected.setText ( "Rectangle Selected" );
+        Label lbl=new Label( totalItems+" Rectangle");
+        
+        lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
+        
+        lbl.setSize ( 150,25);
+        lbl.setVisible ( true);
+        this.itemListPanel.add (lbl );
+        this.totalItems++;
+        this.itemListPanel.repaint ();
+       
          
     }//GEN-LAST:event_btnRectActionPerformed
 
@@ -333,8 +353,6 @@ public class Navigation extends javax.swing.JFrame {
     private javax.swing.JButton colorChoose;
     private javax.swing.JPanel editorPanel;
     private javax.swing.JPanel itemListPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblBrushSize;
     private javax.swing.JLabel lblColorInd;

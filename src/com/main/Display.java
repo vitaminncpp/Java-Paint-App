@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import com.IO.Input;
 import com.paint.Paint;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -45,8 +46,8 @@ public class Display extends Canvas {
 
     // Graphics
     private BufferStrategy bs;
-    public  Graphics g;
-
+    public  Graphics gT;
+    public Graphics2D g;
     // Game Logic
     private Paint paint;
     private Color background = Color.BLACK;
@@ -84,8 +85,8 @@ public class Display extends Canvas {
             this.createBufferStrategy ( 3 );
             bs = this.getBufferStrategy ();
         }
-        g = bs.getDrawGraphics ();
-
+        gT = bs.getDrawGraphics ();
+        this.g=(Graphics2D)gT;
         // Start the Game
         this.render ();
     }

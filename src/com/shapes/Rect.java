@@ -7,8 +7,10 @@ package com.shapes;
 
 import com.IO.MouseAction;
 import com.math.Vec2;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
@@ -55,9 +57,12 @@ public class Rect extends Shape implements MouseAction {
     }
 
     @Override
-    public void render ( Graphics g ) {
+    public void render ( Graphics2D g ) {
         int x1, y1, x2, y2;
         g.setColor ( this.color );
+        if(selected){
+            g.setStroke ( new BasicStroke(4));
+        }
 
         if ( this.width < 0 ) {
             x1 = ( int ) this.end.getX ();
@@ -79,11 +84,17 @@ public class Rect extends Shape implements MouseAction {
 
         if ( this.fill ) {
             g.fillRect ( x1 , y1 , x2 , y2 );
+            if(selected){
+                g.setColor ( Color.BLACK);
+                g.drawRect ( x1 , y1 , x2 , y2 );
+            }
         }
         else {
             g.drawRect ( x1 , y1 , x2 , y2 );
         }
-
+        if(selected){
+            g.setStroke ( new BasicStroke(1));
+        }
     }
 
     @Override

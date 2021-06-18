@@ -16,12 +16,13 @@ import com.shapes.Line;
 import com.shapes.Rect;
 import com.statemachine.State;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Paint implements MouseAction {
 	private final Display panel;
 	
         
-        
+        private int itemSelected=-1;
         private final List<Shape> model;
         private final List<Shape> view;
         
@@ -39,8 +40,8 @@ public class Paint implements MouseAction {
             this.view=new ArrayList<Shape>();
             this.panel = panel;
             this.shapeState = State.CIRCLE_SELECTED;
-            this.currColor=Color.WHITE;
-            this.background=Color.BLACK;
+            this.currColor=Color.BLACK;
+            this.background=Color.WHITE;
             this.fill=false;
             this.strokeSize=20;
             
@@ -54,7 +55,7 @@ public class Paint implements MouseAction {
 		this.model.add(shape);
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
             System.out.println("Paint | render ");
             g.setColor(this.background);
             g.fillRect ( 0, 0, Display.WIDTH+10, Display.HEIGHT+10);
@@ -173,6 +174,7 @@ public class Paint implements MouseAction {
 		}
 		this.model.add(this.currShape);
                 this.view.add(this.currShape);
+                currShape.unSelect ();
 		this.currShape=null;
 	}
         
@@ -182,5 +184,12 @@ public class Paint implements MouseAction {
           }
       }
       
-      
+      public void setSelected(int select){
+          this.view.get ( this.itemSelected ).unSelect();
+          this.view.get ( select ).select();
+          this.itemSelected=select;
+      }
+      public int getSelected(){
+          return this.itemSelected;
+      }
 }

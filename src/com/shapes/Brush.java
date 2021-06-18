@@ -9,6 +9,7 @@ import com.IO.MouseAction;
 import com.math.Vec2;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class Brush extends Shape implements MouseAction {
     }
 
     @Override
-    public void render ( Graphics g ) {
+    public void render ( Graphics2D g ) {
         g.setColor ( color );
         System.out.println ("Brush | render | "+this.strokeSize);
         for(int i=0;i<this.n;i++){

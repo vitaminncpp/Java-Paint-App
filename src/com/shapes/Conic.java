@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
 import com.math.Vec2;
+import java.awt.Graphics2D;
 
 public class Conic extends Shape {
 
@@ -13,7 +14,7 @@ public class Conic extends Shape {
     }
 
     @Override
-    public void render ( Graphics g ) {
+    public void render ( Graphics2D g ) {
 
     }
 

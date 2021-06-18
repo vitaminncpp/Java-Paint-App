@@ -168,6 +168,7 @@ public class Vec3 {
 		this.r = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
 	}
 	
+        @Override
 	public String toString() {
 		return "("+this.x+", "+this.y+", "+this.z+")";
 	}

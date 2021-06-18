@@ -7,8 +7,10 @@ package com.shapes;
 
 import com.IO.MouseAction;
 import com.math.Vec2;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
@@ -28,10 +30,20 @@ public class Circle extends Shape implements MouseAction {
     }
 
     public void draw ( Graphics g ) {
+        
         g.setColor ( this.color );
 
         g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
-
+        if(selected){
+            g.setColor ( Color.BLACK);
+            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-1 , ( int ) ( this.pos.getY () - this.radius )-1 , ( int ) this.radius * 2+1 , ( int ) this.radius * 2 +1);
+            g.setColor ( Color.WHITE);
+            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-2 , ( int ) ( this.pos.getY () - this.radius )-2 , ( int ) this.radius * 2+2 , ( int ) this.radius * 2 +2);
+            g.setColor ( Color.BLACK);
+            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-3 , ( int ) ( this.pos.getY () - this.radius )-3 , ( int ) this.radius * 2+3 , ( int ) this.radius * 2 +3);
+           
+        }
+        
     }
 
     public void setRadius ( double radius ) {
@@ -118,15 +130,25 @@ public class Circle extends Shape implements MouseAction {
     }
 
     @Override
-    public void render ( Graphics g ) {
+    public void render ( Graphics2D g ) {
+        if(this.selected){
+            g.setStroke ( new BasicStroke(4));
+        }
         g.setColor ( this.color );
         if ( this.fill ) {
             g.fillOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
+            g.setColor ( Color.BLACK);
+            if(selected){
+                g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
 
+            }
         }
         else {
             g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
 
+        }
+        if(this.selected){
+            g.setStroke ( new BasicStroke(1));
         }
 
     }
