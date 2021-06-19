@@ -14,9 +14,9 @@ public class Line extends Shape {
     Vec2 start;
     Vec2 end;
 
-    public Line ( Vec2 start , Vec2 end , Color color , boolean fill ) {
+    public Line ( Vec2 start , Vec2 end , Color color , boolean fill ,double stroke) {
 
-        super ( start.addition ( end ).scalar ( .5 ) , color , fill );
+        super ( start.addition ( end ).scalar ( .5 ) , color , fill ,stroke);
         this.start = start;
         this.end = end;
 
@@ -28,12 +28,11 @@ public class Line extends Shape {
      */
     @Override
     public void render ( Graphics2D g ) {
-        if(selected){
-            g.setStroke (new BasicStroke (4));
-        }
+        
+        g.setStroke ( stroke);
         g.setColor ( this.color );
         g.drawLine ( ( int ) this.start.getX () , ( int ) this.start.getY () , ( int ) this.end.getX () , ( int ) this.end.getY () );
-        g.setStroke ( new BasicStroke(1));
+        
     }
 
     @Override
@@ -99,16 +98,22 @@ public class Line extends Shape {
 
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     @Override
-    public void onLeftReleased ( MouseEvent e ) {
+    public boolean onLeftReleased ( MouseEvent e ) {
         // TODO Auto-generated method stub
-
+        this.setEnd ( e.getX (),e.getY ());
+        return !(this.start.getX ()==this.end.getX ()&&this.start.getY ()==this.end.getY ());
     }
 
     @Override
     public void onRightReleased ( MouseEvent e ) {
         // TODO Auto-generated method stub
-
+       
     }
 
     @Override

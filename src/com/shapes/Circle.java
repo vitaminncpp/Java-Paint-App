@@ -22,8 +22,8 @@ public class Circle extends Shape implements MouseAction {
 
     private double radius;
 
-    public Circle ( Vec2 pos , double radius , Color color , boolean fill ) {
-        super ( pos , color , fill );
+    public Circle ( Vec2 pos , double radius , Color color , boolean fill,double stroke ) {
+        super ( pos , color , fill ,stroke);
 
         this.radius = radius;
 
@@ -33,16 +33,8 @@ public class Circle extends Shape implements MouseAction {
         
         g.setColor ( this.color );
 
-        g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
-        if(selected){
-            g.setColor ( Color.BLACK);
-            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-1 , ( int ) ( this.pos.getY () - this.radius )-1 , ( int ) this.radius * 2+1 , ( int ) this.radius * 2 +1);
-            g.setColor ( Color.WHITE);
-            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-2 , ( int ) ( this.pos.getY () - this.radius )-2 , ( int ) this.radius * 2+2 , ( int ) this.radius * 2 +2);
-            g.setColor ( Color.BLACK);
-            g.drawOval ( ( int ) ( this.pos.getX () - this.radius )-3 , ( int ) ( this.pos.getY () - this.radius )-3 , ( int ) this.radius * 2+3 , ( int ) this.radius * 2 +3);
-           
-        }
+        //g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
+        
         
     }
 
@@ -89,11 +81,15 @@ public class Circle extends Shape implements MouseAction {
     }
 
     @Override
-    public void onLeftReleased ( MouseEvent e ) {
+    public boolean onLeftReleased ( MouseEvent e ) {
 
+        
         Vec2 v = this.pos.subtraction ( new Vec2 ( e.getX () , e.getY () ) );
         System.out.println ( "Circle | OnLeftRelease | " + v.getR () );
+       
         this.radius = v.getR ();
+        return this.radius>1;
+       
     }
 
     @Override
@@ -123,32 +119,25 @@ public class Circle extends Shape implements MouseAction {
 
     }
 
-    public static void drawOval ( Graphics g , Vec2 center , double a , double b , Color color ) {
+    public static void drawOval ( Graphics g , Vec2 pos , double a , double b , Color color ) {
         g.setColor ( color );
-        g.drawOval ( ( int ) ( center.getX () - a / 2 ) , ( int ) ( center.getY () - b / 2 ) , ( int ) ( center.getX () + a / 2 ) , ( int ) ( center.getY () + b / 2 ) );
+        g.drawOval (  ( int ) ( pos.getX () - a ) , ( int ) ( pos.getY () - b ) , ( int ) (a * 2) , ( int )(b * 2) );
 
     }
 
     @Override
     public void render ( Graphics2D g ) {
-        if(this.selected){
-            g.setStroke ( new BasicStroke(4));
-        }
+        
+        g.setStroke ( this.stroke);
         g.setColor ( this.color );
         if ( this.fill ) {
             g.fillOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
             g.setColor ( Color.BLACK);
-            if(selected){
-                g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
-
-            }
+            
         }
         else {
             g.drawOval ( ( int ) ( this.pos.getX () - this.radius ) , ( int ) ( this.pos.getY () - this.radius ) , ( int ) this.radius * 2 , ( int ) this.radius * 2 );
 
-        }
-        if(this.selected){
-            g.setStroke ( new BasicStroke(1));
         }
 
     }

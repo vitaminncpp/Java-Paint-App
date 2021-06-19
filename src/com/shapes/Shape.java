@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import com.IO.MouseAction;
 import com.math.Vec2;
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
 public abstract class Shape implements MouseAction{
@@ -12,11 +13,14 @@ public abstract class Shape implements MouseAction{
 	protected Color color;
 	protected boolean fill;
         protected boolean selected=true;
-	public Shape(Vec2 pos,Color color,boolean fill) {
+        protected BasicStroke stroke;
+	public Shape(Vec2 pos,Color color,boolean fill,double stroke) {
 		this.pos=pos;
 		this.color=color;
                 this.fill=fill;
                 this.selected=true;
+                this.stroke=new BasicStroke(( float ) stroke);
+                
 	}
 	
 

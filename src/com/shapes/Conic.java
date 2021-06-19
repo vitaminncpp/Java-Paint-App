@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 public class Conic extends Shape {
 
     public Conic ( Vec2... points ) {
-        super ( null , null , false );
+        super ( null , null , false,1 );
     }
 
     @Override
@@ -61,9 +61,9 @@ public class Conic extends Shape {
     }
 
     @Override
-    public void onLeftReleased ( MouseEvent e ) {
+    public boolean onLeftReleased ( MouseEvent e ) {
         // TODO Auto-generated method stub
-
+         return false;
     }
 
     @Override

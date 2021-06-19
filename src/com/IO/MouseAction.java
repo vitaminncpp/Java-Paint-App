@@ -11,7 +11,12 @@ public interface MouseAction {
 
     public void onRightPressed ( MouseEvent e );
 
-    public void onLeftReleased ( MouseEvent e );
+    /**
+     *
+     * @param e
+     * @return
+     */
+    public boolean onLeftReleased ( MouseEvent e );
 
     public void onRightReleased ( MouseEvent e );
 

@@ -5,37 +5,30 @@
  */
 package com.shapes;
 
-import com.IO.MouseAction;
 import com.math.Vec2;
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Akshay
  */
-public class Brush extends Shape implements MouseAction {
-
-    private  List<Vec2> vert;
-    private int n;
+public class Bazier extends Shape{
+    
+    private int degree;
     
     
-   
-
-    public Brush ( Vec2 pos , Color color , boolean fill,double strokeSize ) {
-        super ( pos , color , fill,strokeSize);
-        this.vert = new ArrayList<Vec2> ();
-        this.vert.add ( pos );
-        this.n=1;
+    
+    
+    public Bazier(Vec2  pos,Color color,int stroke ){
+        super(pos,color,false,stroke);
         
     }
 
+    
+    
     @Override
     public void translate ( Vec2 v ) {
         throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
@@ -47,22 +40,18 @@ public class Brush extends Shape implements MouseAction {
     }
 
     @Override
-    public void rotate ( double orientation ) {
-        
+    public void scal ( double s , Vec2 v ) {
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     *
-     * @param g
-     */
+    @Override
+    public void rotate ( double orientation ) {
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void render ( Graphics2D g ) {
-        g.setColor ( color );
-        g.setStroke ( this.stroke);
-        System.out.println ("Brush | render | "+this.stroke);
-        for(int i=1;i<this.n;i++){
-            g.drawLine ( (int)this.vert.get ( i-1).getX (),(int) this.vert.get ( i-1).getY (),(int)this.vert.get ( i ).getX (),(int) this.vert.get ( i ).getY ()); 
-        }
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -71,9 +60,18 @@ public class Brush extends Shape implements MouseAction {
     }
 
     @Override
+    public Shape getCopy () {
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString () {
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public void onDrag ( MouseEvent e ) {
-        this.vert.add ( new Vec2(e.getX (),e.getY ()));
-        this.n++;
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -86,11 +84,14 @@ public class Brush extends Shape implements MouseAction {
         throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     @Override
     public boolean onLeftReleased ( MouseEvent e ) {
-        this.vert.add ( new Vec2(e.getX (),e.getY ()));
-        this.n++;
-        return this.n>1;
+        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -107,21 +108,5 @@ public class Brush extends Shape implements MouseAction {
     public void onMouseWheelDown ( MouseWheelEvent e ) {
         throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void scal ( double s , Vec2 v ) {
-        for(int i=0;i<this.vert.size ();i++){
-            this.vert.get ( i ).scal ( s , v );
-        }
-    }
-    @Override
-    public Shape getCopy () {
-        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String toString () {
-        throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }

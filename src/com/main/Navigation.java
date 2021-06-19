@@ -11,10 +11,6 @@ import com.paint.Paint;
 import com.statemachine.State;
 import java.awt.GridLayout;
 import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JColorChooser;
 
 /**
@@ -258,7 +254,7 @@ public class Navigation extends javax.swing.JFrame {
 
         this.paint.shapeState = State.LINE_SELECTED;
         this.lblShapeSelected.setText ( "Line Selected" );
-        Label lbl=new Label( totalItems+" Line");
+        Label lbl=new Label( totalItems+1+" Line");
         
         lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
         
@@ -274,7 +270,7 @@ public class Navigation extends javax.swing.JFrame {
     private void btnCircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCircleActionPerformed
         this.paint.shapeState = State.CIRCLE_SELECTED;
         this.lblShapeSelected.setText ( "Cirle Selected" );
-        Label lbl=new Label( totalItems+" Circle");
+        Label lbl=new Label( totalItems+1+" Circle");
         
         lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
         
@@ -288,7 +284,7 @@ public class Navigation extends javax.swing.JFrame {
     private void btnRectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectActionPerformed
         this.paint.shapeState = State.RECT_SELECTED;
         this.lblShapeSelected.setText ( "Rectangle Selected" );
-        Label lbl=new Label( totalItems+" Rectangle");
+        Label lbl=new Label( totalItems+1+" Rectangle");
         
         lbl.addMouseListener (new LabelListener(this.paint,this.totalItems));
         
@@ -304,7 +300,7 @@ public class Navigation extends javax.swing.JFrame {
     private void btnBrushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrushActionPerformed
         this.paint.shapeState = State.BRUSH_SELETED;
         this.lblShapeSelected.setText ( "Brush Selected" );
-       
+        this.totalItems++;
     }//GEN-LAST:event_btnBrushActionPerformed
 
     private void colorChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorChooseActionPerformed

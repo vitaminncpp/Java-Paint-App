@@ -21,12 +21,17 @@ public class LabelListener implements MouseListener {
     public LabelListener(Paint paint,int itemIndex){
         this.paint=paint;
         this.itemIndex=itemIndex;
+        
     }
     
-    
+    /**
+     *
+     * @param arg0
+     */
     @Override
     public void mouseClicked ( MouseEvent arg0 ) {
         this.paint.setSelected ( this. itemIndex );
+        this.paint.panel.render();
     }
 
     @Override

@@ -19,7 +19,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Paint implements MouseAction {
-	private final Display panel;
+	public final Display panel;
 	
         
         private int itemSelected=-1;
@@ -110,14 +110,14 @@ public class Paint implements MouseAction {
 			
 			break;
 		case State.LINE_SELECTED:
-			this.currShape = new Line(new Vec2(e.getX(), e.getY()), new Vec2(e.getX(), e.getY()), this.currColor,this.fill);
+			this.currShape = new Line(new Vec2(e.getX(), e.getY()), new Vec2(e.getX(), e.getY()), this.currColor,this.fill,this.strokeSize);
                         
 			break;
                 case State.CIRCLE_SELECTED:
-                    this.currShape=new Circle(new Vec2(e.getX() ,e.getY ()),5,this.currColor,this.fill);
+                    this.currShape=new Circle(new Vec2(e.getX() ,e.getY ()),5,this.currColor,this.fill,this.strokeSize);
                     break;
                 case State.RECT_SELECTED:
-                    this.currShape=new Rect(new Vec2(e.getX() ,e.getY ()),new Vec2(e.getX() ,e.getY ()),this.currColor,this.fill);
+                    this.currShape=new Rect(new Vec2(e.getX() ,e.getY ()),new Vec2(e.getX() ,e.getY ()),this.currColor,this.fill,this.strokeSize);
                     break;
                 
                 case State.BRUSH_SELETED:
@@ -137,15 +137,21 @@ public class Paint implements MouseAction {
 	}
 
 	@Override
-	public void onLeftReleased(MouseEvent e) {
+	public boolean onLeftReleased(MouseEvent e) {
 
             if(this.shapeState==State.NONE_SELECTED){
-                return;
+                return false;
             }
-		this.currShape.onLeftReleased(e);
-		this.addCurrent();
+		if(this.currShape.onLeftReleased(e)){
+                    this.addCurrent();
+                    this.panel.render();
+                    return true;
+                    
+                }
+		
 		//this.shapeState=State.NONE_SELECTED;
-		this.panel.render();
+		this.currShape=null;
+                return false;
 
 	}
 

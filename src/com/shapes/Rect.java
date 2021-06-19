@@ -25,8 +25,8 @@ public class Rect extends Shape implements MouseAction {
     private double height;
     private Vec2 end;
 
-    public Rect ( Vec2 start , Vec2 end , Color color , boolean fill ) {
-        super ( start.addition ( end ).scalar ( 0.5 ) , color , fill );
+    public Rect ( Vec2 start , Vec2 end , Color color , boolean fill,double stroke ) {
+        super ( start.addition ( end ).scalar ( 0.5 ) , color , fill,stroke );
         this.start = start;
         this.end = end;
         this.width = this.end.subtraction ( this.start ).getX ();
@@ -60,9 +60,9 @@ public class Rect extends Shape implements MouseAction {
     public void render ( Graphics2D g ) {
         int x1, y1, x2, y2;
         g.setColor ( this.color );
-        if(selected){
-            g.setStroke ( new BasicStroke(4));
-        }
+    
+            g.setStroke ( this.stroke);
+        
 
         if ( this.width < 0 ) {
             x1 = ( int ) this.end.getX ();
@@ -84,17 +84,12 @@ public class Rect extends Shape implements MouseAction {
 
         if ( this.fill ) {
             g.fillRect ( x1 , y1 , x2 , y2 );
-            if(selected){
-                g.setColor ( Color.BLACK);
-                g.drawRect ( x1 , y1 , x2 , y2 );
-            }
+            
         }
         else {
             g.drawRect ( x1 , y1 , x2 , y2 );
         }
-        if(selected){
-            g.setStroke ( new BasicStroke(1));
-        }
+        
     }
 
     @Override
@@ -125,15 +120,20 @@ public class Rect extends Shape implements MouseAction {
         throw new UnsupportedOperationException ( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     @Override
-    public void onLeftReleased ( MouseEvent e ) {
+    public boolean onLeftReleased ( MouseEvent e ) {
         this.end.setXY ( e.getX () , e.getY () );
 
         this.width = this.end.subtraction ( this.start ).getX ();
         this.height = this.end.subtraction ( this.start ).getY ();
 
         this.pos = this.start.subtraction ( this.end ).scalar ( 0.5 );
-
+        return !(this.height==0&&this.width==0);
     }
 
     @Override
