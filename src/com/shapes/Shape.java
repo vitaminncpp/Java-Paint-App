@@ -12,14 +12,14 @@ public abstract class Shape implements MouseAction{
 	protected Vec2 pos;
 	protected Color color;
 	protected boolean fill;
-        protected boolean selected=true;
+        protected boolean selected;
         protected BasicStroke stroke;
 	public Shape(Vec2 pos,Color color,boolean fill,double stroke) {
 		this.pos=pos;
 		this.color=color;
                 this.fill=fill;
                 this.selected=true;
-                this.stroke=new BasicStroke(( float ) stroke);
+                this.stroke=new BasicStroke(( float ) stroke,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
                 
 	}
 	
