@@ -6,9 +6,8 @@
 package com.shapes;
 
 /**
- *
  * @author Akshay
  */
 public class Polygon {
-    
+
 }

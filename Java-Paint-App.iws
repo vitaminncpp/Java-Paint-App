@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6d670a9f-62c3-4af8-a1a6-8c9512b67797" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Java-Paint-App.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java-Paint-App.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/IO/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IO/Input.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/IO/LabelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IO/LabelListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/IO/MouseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IO/MouseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/IO/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/IO/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/main/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/main/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main/Navigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/math/Common.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/math/Common.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/math/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/math/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/math/Vec2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/math/Vec2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/math/Vec3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/math/Vec3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/paint/Paint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/paint/Paint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Bazier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Bazier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Brush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Brush.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Conic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Conic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Line.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Rect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Rect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/shapes/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/statemachine/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/statemachine/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/util/MathException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/util/MathException.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.main.Main" />
+      <module name="Java-Paint-App" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d670a9f-62c3-4af8-a1a6-8c9512b67797" name="Changes" comment="" />
+      <created>1660468368711</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660468368711</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

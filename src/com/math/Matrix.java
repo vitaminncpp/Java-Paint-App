@@ -3,112 +3,132 @@ package com.math;
 import com.util.MathException;
 
 public class Matrix {
-	public final int m;
-	public final int n;
-	public double mat[][];
+    public final int m;
+    public final int n;
+    public double[][] mat;
 
-	public Matrix(int m, int n) {
-		this.m = m;
-		this.n = n;
-		this.mat = new double[this.m][this.n];
-	}
+    public Matrix(int m, int n) {
+        this.m = m;
+        this.n = n;
+        this.mat = new double[this.m][this.n];
+    }
 
-	public Matrix(int n) {
-		this.m = this.n = n;
-		this.mat = new double[this.m][this.n];
+    public Matrix(int n) {
+        this.m = this.n = n;
+        this.mat = new double[this.m][this.n];
 
-	}
+    }
 
-	Matrix(Matrix mat) {
-		this.m = mat.m;
-		this.n = mat.n;
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; i++) {
-				this.mat[i][j] = mat.mat[i][j];
-			}
-		}
-	}
+    Matrix(Matrix mat) {
+        this.m = mat.m;
+        this.n = mat.n;
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; i++) {
+                this.mat[i][j] = mat.mat[i][j];
+            }
+        }
+    }
 
-	public Matrix(int m, int n, double[][] mat) {
-		this.m = m;
-		this.n = n;
-		this.mat = mat;
-	}
+    public Matrix(int m, int n, double[][] mat) {
+        this.m = m;
+        this.n = n;
+        this.mat = mat;
+    }
 
-	public Matrix(int n, double[][] mat) {
-		this.m = this.n = n;
-		this.mat = mat;
-	}
+    public Matrix(int n, double[][] mat) {
+        this.m = this.n = n;
+        this.mat = mat;
+    }
 
-	public Matrix addition(Matrix mat) throws MathException {
-		if (this.m != mat.m || this.n != mat.n) {
-			throw new MathException("Cant Add : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = " + mat.m
-					+ " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
-		double[][] ans = new double[this.m][this.n];
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				ans[i][j] = this.mat[i][j] + mat.mat[i][j];
-			}
-		}
-		return new Matrix(this.m, this.n, ans);
+    public static Matrix rotation3DX(double theta) {
 
-	}
+        double sinTheta = Math.sin(theta);
+        double cosTheta = Math.cos(theta);
+        double[][] mat = new double[3][3];
+        mat[0][0] = 1;
+        mat[0][1] = 0;
+        mat[0][2] = 0;
 
-	public Matrix subtraction(Matrix mat) throws MathException {
-		if (this.m != mat.m || this.n != mat.n) {
-			throw new MathException("Cant Subtract : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = "
-					+ mat.m + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
-		double[][] ans = new double[this.m][this.n];
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				ans[i][j] = this.mat[i][j] - mat.mat[i][j];
-			}
-		}
-		return new Matrix(this.m, this.n, ans);
+        mat[1][0] = 0;
+        mat[1][1] = cosTheta;
+        mat[1][2] = -sinTheta;
 
-	}
+        mat[2][0] = 0;
+        mat[2][1] = sinTheta;
+        mat[2][2] = cosTheta;
 
-	public Matrix multiplication(Matrix mat) throws MathException {
-		if (this.n != mat.m) {
-			throw new MathException("Cant Multiply : Mat1.n = " + this.n + " | Mat2.m = " + mat.m + ".",
-					MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
+        return new Matrix(3, 3, mat);
+    }
 
-		double ans[][] = new double[this.m][mat.n];
-		double sum = 0;
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < mat.n; j++) {
-				sum = 0;
-				for (int k = 0; k < this.n; k++) {
-					sum += this.mat[i][k] * mat.mat[k][j];
-				}
-				ans[i][j] = sum;
-			}
-		}
-		return new Matrix(this.m, mat.n, ans);
-	}
+    public static Matrix rotation3DY(double theta) {
+        double sinTheta = Math.sin(theta);
+        double cosTheta = Math.cos(theta);
+        double[][] mat = new double[3][3];
 
-	public Matrix scalar(double s) {
-		double[][] mat = new double[this.m][this.n];
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				mat[i][j] = this.mat[i][j] * s;
-			}
-		}
-		return new Matrix(this.m, this.n, mat);
-	}
+        mat[0][0] = cosTheta;
+        mat[0][1] = 0;
+        mat[0][2] = sinTheta;
 
-	public Matrix division(double d) {
-		double[][] mat = new double[this.m][this.n];
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				mat[i][j] = this.mat[i][j] / d;
-			}
-		}
-		return new Matrix(this.m, this.n, mat);
-	}
+        mat[1][0] = 0;
+        mat[1][1] = 1;
+        mat[1][2] = 0;
+
+        mat[2][0] = -sinTheta;
+        mat[2][1] = 0;
+        mat[2][2] = cosTheta;
+
+        return new Matrix(3, 3, mat);
+    }
+
+    public static Matrix rotation3DZ(double theta) {
+        double sinTheta = Math.sin(theta);
+        double cosTheta = Math.cos(theta);
+        double[][] mat = new double[3][3];
+
+        mat[0][0] = cosTheta;
+        mat[0][1] = -sinTheta;
+        mat[0][2] = 0;
+
+        mat[1][0] = sinTheta;
+        mat[1][1] = cosTheta;
+        mat[1][2] = 0;
+
+        mat[2][0] = 0;
+        mat[2][1] = 0;
+        mat[2][2] = 1;
+
+        return new Matrix(3, 3, mat);
+    }
+
+    public Matrix addition(Matrix mat) throws MathException {
+        if (this.m != mat.m || this.n != mat.n) {
+            throw new MathException("Cant Add : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = " + mat.m
+                    + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
+        double[][] ans = new double[this.m][this.n];
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                ans[i][j] = this.mat[i][j] + mat.mat[i][j];
+            }
+        }
+        return new Matrix(this.m, this.n, ans);
+
+    }
+
+    public Matrix subtraction(Matrix mat) throws MathException {
+        if (this.m != mat.m || this.n != mat.n) {
+            throw new MathException("Cant Subtract : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = "
+                    + mat.m + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
+        double[][] ans = new double[this.m][this.n];
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                ans[i][j] = this.mat[i][j] - mat.mat[i][j];
+            }
+        }
+        return new Matrix(this.m, this.n, ans);
+
+    }
 //
 //
 //Vec3 Matrix::operator * (const Vec3 &v)const {
@@ -142,162 +162,141 @@ public class Matrix {
 //    return Matrix(this.m, this.n, mat);
 //}
 
-	public void add(Matrix mat) throws MathException {
+    public Matrix multiplication(Matrix mat) throws MathException {
+        if (this.n != mat.m) {
+            throw new MathException("Cant Multiply : Mat1.n = " + this.n + " | Mat2.m = " + mat.m + ".",
+                    MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
 
-		if (this.m != mat.m || this.n != mat.n) {
-			throw new MathException("Cant Add : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = " + mat.m
-					+ " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
+        double[][] ans = new double[this.m][mat.n];
+        double sum = 0;
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < mat.n; j++) {
+                sum = 0;
+                for (int k = 0; k < this.n; k++) {
+                    sum += this.mat[i][k] * mat.mat[k][j];
+                }
+                ans[i][j] = sum;
+            }
+        }
+        return new Matrix(this.m, mat.n, ans);
+    }
 
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				this.mat[i][j] += mat.mat[i][j];
-			}
-		}
-	}
+    public Matrix scalar(double s) {
+        double[][] mat = new double[this.m][this.n];
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                mat[i][j] = this.mat[i][j] * s;
+            }
+        }
+        return new Matrix(this.m, this.n, mat);
+    }
 
-	public void subtract(Matrix mat) throws MathException {
+    public Matrix division(double d) {
+        double[][] mat = new double[this.m][this.n];
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                mat[i][j] = this.mat[i][j] / d;
+            }
+        }
+        return new Matrix(this.m, this.n, mat);
+    }
 
-		if (this.m != mat.m || this.n != mat.n) {
-			throw new MathException("Cant Subtract : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = "
-					+ mat.m + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
+    public void add(Matrix mat) throws MathException {
 
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				this.mat[i][j] -= mat.mat[i][j];
-			}
-		}
+        if (this.m != mat.m || this.n != mat.n) {
+            throw new MathException("Cant Add : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = " + mat.m
+                    + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
 
-	}
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                this.mat[i][j] += mat.mat[i][j];
+            }
+        }
+    }
 
-	public void muliply(Matrix mat) throws MathException {
-		if (this.n != mat.m) {
-			throw new MathException("Cant Multiply : Mat1.n = " + this.n + " | Mat2.m = " + mat.m + ".",
-					MathException.DIMENSION_MISMATCH_EXCEPTION);
-		}
+    public void subtract(Matrix mat) throws MathException {
 
-		double ans[][] = new double[this.m][mat.n];
-		double sum = 0;
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < mat.n; j++) {
-				sum = 0;
-				for (int k = 0; k < this.n; k++) {
-					sum += this.mat[i][k] * mat.mat[k][j];
-				}
-				ans[i][j] = sum;
-			}
-		}
-		this.mat = ans;
-	}
+        if (this.m != mat.m || this.n != mat.n) {
+            throw new MathException("Cant Subtract : Mat1.m = " + this.m + " | Mat1.n = " + this.n + " || Mat2.m = "
+                    + mat.m + " | Mat2.n = " + mat.n + ".", MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
 
-	public void scal(double s) {
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                this.mat[i][j] -= mat.mat[i][j];
+            }
+        }
 
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; j < this.n; j++) {
-				this.mat[i][j] *= s;
-			}
-		}
-	}
+    }
 
-	public void divie(double d) {
-		for (int i = 0; i < this.m; i++) {
-			for (int j = 0; i < this.n; j++) {
-				this.mat[i][j] /= d;
-			}
-		}
-	}
+    public void muliply(Matrix mat) throws MathException {
+        if (this.n != mat.m) {
+            throw new MathException("Cant Multiply : Mat1.n = " + this.n + " | Mat2.m = " + mat.m + ".",
+                    MathException.DIMENSION_MISMATCH_EXCEPTION);
+        }
 
-	public double get(int i, int j) {
+        double[][] ans = new double[this.m][mat.n];
+        double sum = 0;
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < mat.n; j++) {
+                sum = 0;
+                for (int k = 0; k < this.n; k++) {
+                    sum += this.mat[i][k] * mat.mat[k][j];
+                }
+                ans[i][j] = sum;
+            }
+        }
+        this.mat = ans;
+    }
 
-		return this.mat[i][j];
-	}
+    public void scal(double s) {
 
-	public void set(double s, int i, int j) {
-		this.mat[i][j] = s;
-	}
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; j < this.n; j++) {
+                this.mat[i][j] *= s;
+            }
+        }
+    }
 
-	public int getRowCount() {
-		return this.m;
-	}
+    public void divie(double d) {
+        for (int i = 0; i < this.m; i++) {
+            for (int j = 0; i < this.n; j++) {
+                this.mat[i][j] /= d;
+            }
+        }
+    }
 
-	public int getColCount() {
-		return this.n;
-	}
+    public double get(int i, int j) {
 
-	public static Matrix rotation3DX(double theta) {
+        return this.mat[i][j];
+    }
 
-		double sinTheta = Math.sin(theta);
-		double cosTheta = Math.cos(theta);
-		double[][] mat = new double[3][3];
-		mat[0][0] = 1;
-		mat[0][1] = 0;
-		mat[0][2] = 0;
+    public void set(double s, int i, int j) {
+        this.mat[i][j] = s;
+    }
 
-		mat[1][0] = 0;
-		mat[1][1] = cosTheta;
-		mat[1][2] = -sinTheta;
+    public int getRowCount() {
+        return this.m;
+    }
 
-		mat[2][0] = 0;
-		mat[2][1] = sinTheta;
-		mat[2][2] = cosTheta;
+    public int getColCount() {
+        return this.n;
+    }
 
-		return new Matrix(3, 3, mat);
-	}
+    @Override
+    public String toString() {
+        String s = "[\n";
+        for (int i = 0; i < this.m; i++) {
+            s += "[ ";
+            for (int j = 0; j < this.n; j++) {
+                s += this.mat[i][j] + "\t";
+            }
+            s += "]\n";
+        }
+        s += "]";
 
-	public static Matrix rotation3DY(double theta) {
-		double sinTheta = Math.sin(theta);
-		double cosTheta = Math.cos(theta);
-		double[][] mat = new double[3][3];
-
-		mat[0][0] = cosTheta;
-		mat[0][1] = 0;
-		mat[0][2] = sinTheta;
-
-		mat[1][0] = 0;
-		mat[1][1] = 1;
-		mat[1][2] = 0;
-
-		mat[2][0] = -sinTheta;
-		mat[2][1] = 0;
-		mat[2][2] = cosTheta;
-
-		return new Matrix(3, 3, mat);
-	}
-
-	public static Matrix rotation3DZ(double theta) {
-		double sinTheta = Math.sin(theta);
-		double cosTheta = Math.cos(theta);
-		double[][] mat = new double[3][3];
-
-		mat[0][0] = cosTheta;
-		mat[0][1] = -sinTheta;
-		mat[0][2] = 0;
-
-		mat[1][0] = sinTheta;
-		mat[1][1] = cosTheta;
-		mat[1][2] = 0;
-
-		mat[2][0] = 0;
-		mat[2][1] = 0;
-		mat[2][2] = 1;
-
-		return new Matrix(3, 3, mat);
-	}
-	
-	
-	@Override 
-	public String toString() {
-		String s="[\n";
-		for (int i=0;i<this.m;i++) {
-			s+="[ ";
-			for(int j=0;j<this.n;j++) {
-				s+=this.mat[i][j]+"\t";
-			}
-			s+="]\n";
-		}
-		s+="]";
-		
-		return s;
-	}
+        return s;
+    }
 }

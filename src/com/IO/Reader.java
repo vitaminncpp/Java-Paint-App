@@ -6,9 +6,8 @@
 package com.IO;
 
 /**
- *
  * @author Akshay
  */
 public class Reader {
-    
+
 }
